@@ -15,11 +15,32 @@ const addCartItem = (cartItems, productToAdd) => {
     
 }
 
+const removeCartItem = (cartItems, productToRemove) => {
+    const existingCartItem = cartItems.find(cartItem => cartItem.id === productToRemove.id);
+    if(existingCartItem && productToRemove.quantity > 1) {
+        return cartItems.map((cartItem) => 
+            cartItem.id === productToRemove.id 
+            ? {...cartItem, quantity: cartItem.quantity - 1}
+            : cartItem
+        )
+    }
+    else if(productToRemove.quantity <= 1 ){
+        return cartItems.filter(item => item.id !== productToRemove.id);
+    }
+    else console.log('Item doesnt exist');
+}
+
+const removeAllCopies = (cartItems, productToRemove) => {
+    return cartItems.filter(item => item.id !== productToRemove.id);
+}
+
 export const CartContext = createContext({
     isCartOpen: false,
     setIsCartOpen: () => {},
     cartItems: [],
     addItemToCart: () => {},
+    removeItemFromCart: () => {},
+    removeAllCopies: () => {},
     cartCount: 0,
 });
 
@@ -35,9 +56,17 @@ export const CartProvider = ({children}) => {
     const addItemToCart = ( productToAdd ) => {
         setCartItems(addCartItem(cartItems, productToAdd));
     }
+
+    const removeItemFromCart = ( productToRemove ) => {
+        setCartItems(removeCartItem(cartItems, productToRemove));
+    }
+
+    const removeAllItems = ( productToRemove ) => {
+        setCartItems(removeAllCopies(cartItems, productToRemove));
+    }
     
 
-    const value = { isCartOpen, setIsCartOpen, addItemToCart, cartItems, cartCount };
+    const value = { isCartOpen, setIsCartOpen, addItemToCart, removeItemFromCart, removeAllItems, cartItems, cartCount };
     
     return (
         <CartContext.Provider value={value}>{children}</CartContext.Provider>

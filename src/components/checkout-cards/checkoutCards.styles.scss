@@ -1,0 +1,17 @@
+.cart-flex{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 82%;
+    margin: auto;
+    border-bottom: 2px solid black;
+    padding: 7px;
+    img {
+        width: 120px;
+        height: 120px;
+    }
+    .plus, .minus, .cross {
+        font-size: 2rem;
+        cursor: pointer;
+    }
+}

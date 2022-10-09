@@ -2,6 +2,7 @@ import { useContext } from 'react'
 import Button from '../button/button.components'
 import CartItem from '../cart-item/cart-item.component'
 import { CartContext } from '../../contexts/cart.context'
+import { Link } from 'react-router-dom'
 import './cart-dropdown.scss'
 
 const CartDropdown = (props) => {
@@ -15,7 +16,8 @@ const CartDropdown = (props) => {
                     ))
                 }
             </div>
-            <Button displayName="Go To Chechout" />
+            <Link to="/checkout"><Button displayName="Go To Chechout"  /></Link>
+            
         </div>
     )
 }
