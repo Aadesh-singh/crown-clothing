@@ -7,18 +7,25 @@ const CheckoutCards = ({product}) => {
     const { addItemToCart, removeItemFromCart, removeAllItems } = useContext(CartContext);
     const { name, imageUrl, price, quantity } = product;
     
-    const incQuantity = () => addItemToCart(product);
-    const remQuantity = () => removeItemFromCart(product);
-    const remAllQunatity = () => removeAllItems(product);
+    const addItemHandler = () => addItemToCart(product);
+    const removeItemHandler = () => removeItemFromCart(product);
+    const clearItemHandler = () => removeAllItems(product);
 
     return (
-        <div className="cart-flex">
-            <img src={imageUrl} alt={imageUrl} />
+        <div className="checkout-item-container">
+            <div className="image-container">
+                <img src={imageUrl} alt={imageUrl} />
+            </div>
             <div className="name">{name}</div>
-            <div className="plus" onClick={incQuantity}>+</div>
-            <div className="qty">{quantity} x ${price}</div>
-            <div className="minus" onClick={remQuantity}>-</div>
-            <div className="cross" onClick={remAllQunatity}>X</div>
+            {/* <div className="plus" onClick={incQuantity}>+</div> */}
+            <div className="quantity">
+                <div className="arrow" onClick={removeItemHandler}>&#10094;</div>
+                <span className="value">{quantity}</span>
+                <div className="arrow" onClick={addItemHandler}>&#10095;</div>
+            </div>
+            <div className="price"> ${price}</div>
+            {/* <div className="minus" onClick={remQuantity}>-</div> */}
+            <div className="remove-button" onClick={clearItemHandler}>&#10005;</div>
 
         </div>
     )

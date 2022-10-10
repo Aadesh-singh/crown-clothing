@@ -4,36 +4,62 @@ import CheckoutCards from "../../components/checkout-cards/checkoutCards.compone
 import "./checkout.styles.scss";
 
 const Checkout = () => {
-    const { cartItems }  = useContext(CartContext);
-    console.log(cartItems);
-    const calcTotal = () => {
-        let cost = 0;
-        cartItems.forEach(item => {
-            cost += item.quantity * item.price;
-        })
-        return cost;
-    }
+    const { cartItems, cartTotal }  = useContext(CartContext);
+    
     if(cartItems.length <= 0){
         return (
-            <div className="empty">Cart is Empty</div>
+            <div className="checkout-container">
+                <div className="checkout-header">
+                    <div className="header-block">
+                        <span>Product</span>
+                    </div>
+                    <div className="header-block">
+                        <span>Desription</span>
+                    </div>
+                    <div className="header-block">
+                        <span>Quantity</span>
+                    </div>
+                    <div className="header-block">
+                        <span>Price</span>
+                    </div>
+                    <div className="header-block">
+                        <span>Remove</span>
+                    </div>
+                </div>
+                <div className="empty">Cart is Empty</div>
+            </div>
         )
     }
     else {
         return (
-            <div>
-                <div>
+            <div className="checkout-container">
+                <div className="checkout-header">
+                    <div className="header-block">
+                        <span>Product</span>
+                    </div>
+                    <div className="header-block">
+                        <span>Desription</span>
+                    </div>
+                    <div className="header-block">
+                        <span>Quantity</span>
+                    </div>
+                    <div className="header-block">
+                        <span>Price</span>
+                    </div>
+                    <div className="header-block">
+                        <span>Remove</span>
+                    </div>
+                </div>
+                {/* <div> */}
                     {
                         cartItems.map((item) => (
                             <CheckoutCards key={item.id} product={item} />
                             // <CheckoutCards key={item.id} imageUrl={item.imageUrl} name={item.name} quantity={item.quantity} price={item.price} />
                         ))
                     }
-                </div>
+                {/* </div> */}
                 <div className="total">
-                    Total $
-                    {
-                        calcTotal()
-                    }
+                    Total: ${cartTotal}
                 </div>
             </div>
         );
