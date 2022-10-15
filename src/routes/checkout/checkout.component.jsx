@@ -1,55 +1,61 @@
 import { useContext } from "react";
 import { CartContext}  from '../../contexts/cart.context';
 import CheckoutCards from "../../components/checkout-cards/checkoutCards.component";
-import "./checkout.styles.scss";
+import {
+    CheckoutContainer,
+    CheckoutHeader,
+    HeaderBlock,
+    Total,
+    Empty
+} from "./checkout.styles";
 
 const Checkout = () => {
     const { cartItems, cartTotal }  = useContext(CartContext);
     
     if(cartItems.length <= 0){
         return (
-            <div className="checkout-container">
-                <div className="checkout-header">
-                    <div className="header-block">
+            <CheckoutContainer>
+                <CheckoutHeader>
+                    <HeaderBlock>
                         <span>Product</span>
-                    </div>
-                    <div className="header-block">
+                    </HeaderBlock>
+                    <HeaderBlock>
                         <span>Desription</span>
-                    </div>
-                    <div className="header-block">
+                    </HeaderBlock>
+                    <HeaderBlock>
                         <span>Quantity</span>
-                    </div>
-                    <div className="header-block">
+                    </HeaderBlock>
+                    <HeaderBlock>
                         <span>Price</span>
-                    </div>
-                    <div className="header-block">
+                    </HeaderBlock>
+                    <HeaderBlock>
                         <span>Remove</span>
-                    </div>
-                </div>
-                <div className="empty">Cart is Empty</div>
-            </div>
+                    </HeaderBlock>
+                </CheckoutHeader>
+                <Empty>Cart is Empty</Empty>
+            </CheckoutContainer>
         )
     }
     else {
         return (
-            <div className="checkout-container">
-                <div className="checkout-header">
-                    <div className="header-block">
+            <CheckoutContainer>
+                <CheckoutHeader>
+                    <HeaderBlock>
                         <span>Product</span>
-                    </div>
-                    <div className="header-block">
+                    </HeaderBlock>
+                    <HeaderBlock>
                         <span>Desription</span>
-                    </div>
-                    <div className="header-block">
+                    </HeaderBlock>
+                    <HeaderBlock>
                         <span>Quantity</span>
-                    </div>
-                    <div className="header-block">
+                    </HeaderBlock>
+                    <HeaderBlock>
                         <span>Price</span>
-                    </div>
-                    <div className="header-block">
+                    </HeaderBlock>
+                    <HeaderBlock>
                         <span>Remove</span>
-                    </div>
-                </div>
+                    </HeaderBlock>
+                </CheckoutHeader>
                 {/* <div> */}
                     {
                         cartItems.map((item) => (
@@ -58,10 +64,10 @@ const Checkout = () => {
                         ))
                     }
                 {/* </div> */}
-                <div className="total">
+                <Total>
                     Total: ${cartTotal}
-                </div>
-            </div>
+                </Total>
+            </CheckoutContainer>
         );
     }
     
